@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TEST</title>
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		document.write(agent);
+        if( agent.match("android") ) {
+   			 location.href = "https://www.google.com.tw";
+		};
+        if( agent.match("iphone") || agent.match("ipad") ) {
+   			 location.href = "http://www.apple.com/tw/";
+		};
+	</script>
+</head>
+<body>
+
+</body>
+</html>
