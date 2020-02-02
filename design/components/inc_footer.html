@@ -1,0 +1,39 @@
+<div class="footer-trigger">
+    <i class="fas fa-angle-up"></i>
+    <span>Contact me</span>
+</div>
+<div class="footer-show">
+    <div class="footer-show-info">
+        <ul>
+            <li class="phone">Phone: 0921-131243</li>
+            <li class="email"><i class="svgimg"></i>
+                <span class="ps">( 點擊即可複製mail )</span>
+            </li>
+        </ul>
+    </div>
+    <div class="footer-show-cy">
+        2020 © by EveKuan
+    </div>
+</div>
+<script src="https://upload.gnjoy.com.tw/js/jquery-3.2.1.min.js"></script>
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    //--Footer  Effect--//
+    $('.email').on('click',function(){
+        var $temp = $("<input>");
+            $(".email").append($temp);
+            $temp.val('seiyuuqueen@gmail.com').select();
+            document.execCommand("copy");
+            $temp.remove();
+            $('span.ps').addClass('alert').text('( 已複製mail )')
+            setTimeout(function() {
+                $('span.ps').removeClass('alert').text('( 點擊即可複製mail )')
+            },1050)
+    })
+    $('.footer-show').hide();
+    $('.footer-trigger').on('click', function(){
+        $('.footer-show').slideToggle(500,'swing');
+        $('.footer').toggleClass('active')
+    })
+</script>
