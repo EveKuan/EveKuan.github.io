@@ -443,6 +443,8 @@ body {
           -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
           position: absolute; }
+        .works-box-cont .item-thumbnail.notshow img {
+          width: 100%; }
         @media only screen and (min-width: 1281px) {
           .works-box-cont .item-thumbnail:not(.notshow):hover:after {
             opacity: 1;
