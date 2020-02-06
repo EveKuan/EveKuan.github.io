@@ -444,12 +444,12 @@ body {
           transform: translate(-50%, -50%);
           position: absolute; }
         @media only screen and (min-width: 1281px) {
-          .works-box-cont .item-thumbnail:hover:after {
+          .works-box-cont .item-thumbnail:not(.notshow):hover:after {
             opacity: 1;
             -webkit-transform: scale(1);
             -ms-transform: scale(1);
             transform: scale(1); }
-          .works-box-cont .item-thumbnail:hover img {
+          .works-box-cont .item-thumbnail:not(.notshow):hover img {
             width: 100%; } }
       .works-box-cont .item__name {
         margin-top: 10px;
