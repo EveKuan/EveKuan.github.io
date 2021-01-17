@@ -1,0 +1,579 @@
+@mixin clearfix{
+    // *zoom:1;
+    &:after{
+        clear:both;
+        content:"";
+        display:table;
+    }
+}
+@mixin centering($w, $h){
+    position: fixed;
+    width: $w;
+    height: $h;
+    top:50%;
+    left:50%;
+    margin-top: - $h /2;
+    margin-left: -$w /2;
+}
+@mixin mask($op,$z){
+  @include opacity($op);
+  width:100%;
+  min-height:110%;
+  position: fixed;
+  background:#000;
+  z-index:$z;
+  display: none;
+}
+
+//basic setting
+@mixin wh($w, $h) {
+    width: $w;
+    height: $h;
+}
+@mixin wh-auto-m($w, $h) {
+    width: $w;
+    height: $h;
+    margin: 0 auto;
+    position: relative;
+}
+@mixin wh--a($w, $h) {
+    width: $w;
+    height: $h;
+    display: block;
+}
+@mixin wh--100a{
+  a{
+      @include wh--a(100%, 100%);
+    }
+}
+
+//images
+@mixin maru-pic($wh,$r){
+  @include wh($wh,$wh);
+  @include radius($r);
+  overflow:hidden;
+  img {
+      width: 100%;
+      height: auto;
+  }
+}
+@mixin img-mid{
+  overflow: hidden;
+  // img{
+  //     width: 100%;
+  //     height: auto;
+  //     top:50%;
+  //     left: 50%;
+  //     position: relative; 
+  //     transform: translate(-50%, -50%);
+  //   }
+  img{
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+  }
+}
+@mixin pic_16-9{
+    height: 0;
+    padding-bottom: 56.25%;
+    box-sizing:border-box;
+    overflow: hidden;
+    position:relative;
+    img{
+      position:absolute;
+      top:0;
+      bottom:0;
+      right:0;
+      left:0;
+      max-width:100%;
+      margin:auto;
+    }
+
+}
+
+//text overflow
+@mixin text-overflow($width) {
+    width: $width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin line-clamp($n){
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $n;
+  overflow: hidden;
+}
+
+//table
+@mixin table{
+  border-collapse: separate;
+  border-spacing: 1px;
+  width: 100%;
+}
+
+//ol color
+@mixin ol-Color($bgc, $color, $radius, $width, $left){
+  >li{
+    counter-increment: li;
+    position: relative;
+    &:before{
+      position: absolute;
+      content: counter(li); 
+      font-family: 'Cantata One', serif;
+      font-weight: bold;
+      background-color: $bgc;
+      color:$color;
+      text-align: center;
+      @include radius($radius);
+      content: counter(li);
+      width: $width;
+      left:$left;
+    }
+  }
+}
+
+//border and radius
+@mixin radius($s){
+     -moz-border-radius: $s;
+     -webkit-border-radius: $s;
+     border-radius: $s;
+}
+@mixin pd-box($tb, $lr){
+    padding: $tb $lr;
+    box-sizing:border-box;
+}
+
+
+//filter
+@mixin blur($blur){
+    filter: blur($blur);
+    -webkit-filter: blur($blur);
+}
+@mixin opacity($opacity){
+	opacity: $opacity;
+	-moz-opacity: $opacity;
+	filter: alpha(opacity=$opacity*100);
+}
+@mixin gray($gray){
+  -webkit-filter: grayscale($gray);
+  -moz-filter: grayscale($gray);
+  -ms-filter: grayscale($gray);
+  -o-filter: grayscale($gray);
+  filter: grayscale($gray);
+  filter: gray;
+}
+@mixin brightness($brightness) {
+  -webkit-filter: brightness($brightness);
+  filter: brightness($brightness);
+}
+@mixin drop-shadow($x,$y,$r,$c) {
+  filter: drop-shadow($x $y $r $c)
+}
+
+//animation transition
+@mixin ts {
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -ms-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+}
+@mixin transition($duration, $ease) {
+    -webkit-transition: all $duration $ease;
+    -moz-transition: all $duration $ease;
+    -ms-transition: all $duration $ease;
+    transition: all $duration $ease;
+}
+@mixin animate($name, $duration, $delay, $times, $ease){
+    animation: $name $time $duration $times $ease;
+    -webkit-animation:  $name $duration $delay $times $ease;
+}
+@mixin keyframe ($name) {
+    @-webkit-keyframes $name {
+        @content;
+    }
+    @keyframes $name {
+        @content;
+    }
+}
+// .path {
+//   stroke-dasharray: 500;
+//   -webkit-animation: dash 4s linear forwards;
+//      -moz-animation: dash 4s linear forwards;
+//           animation: dash 4s linear forwards;
+// }
+
+// @include keyframes(dash) {
+//   0% {
+//     stroke-dashoffset: 500;
+//     stroke-width: 1;
+//   }
+//   70% {
+//     stroke-dashoffset: 0;
+//     stroke-width: 1;
+//   }
+//   80% {
+//     stroke-width: 1;
+//     fill: #000; 
+//   }
+//   90%{
+//     stroke-width: 0; 
+//   }
+//   100%{
+//     fill: #fff; 
+//     stroke-width: 0;
+//   }
+  
+// }
+
+//transform
+@mixin transform($transforms) {
+    -webkit-transform: $transforms;
+    -moz-transform: $transforms;
+    -ms-transform: $transforms;
+    transform: $transforms;
+}
+@mixin rotate($deg) { 
+    @include transform(rotate(#{$deg}deg));
+}
+@mixin scale($scale) {
+    @include transform(scale($scale));
+}
+@mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+}
+@mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+//linear-gradient
+@mixin linear-gradient($from, $to){
+	background: $to;
+	background-image: linear-gradient($from, $to);/* W3C */
+	background-image: -webkit-linear-gradient($from, $to);/* Chrome10+,Safari5.1+ */
+	background-image: -moz-linear-gradirnt($from,$to);/* FF3.6+ */
+	background-image: -ms-linear-gradient($from, $to);/* IE10+ */
+	background-image: -o-linear-gradient($from, $to); /* Opera 11.10+ */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(1, $to));/* Chrome,Safari4+ */	
+}
+
+//color gradient opacity 
+@mixin colorfx($color,$size) {
+    @for $i from 1 through $size {
+        &:nth-child(#{$i}){
+            background: rgba($color, 1/($i*0.6));
+            &:hover {
+                background: darken(rgba($color, 1), 1/($i*0.1));
+            }
+        }
+    }
+}
+
+//arrow
+%arrow{
+  display: inline-block;
+  position: absolute;
+  width: 9px;
+  height: 1px;
+}
+@mixin arrowR($c){
+  .arrow-line1, .arrow-line2{
+      @extend %arrow;
+      background-color: map-get($colors, $c);
+      margin-top: 9px;
+      margin-left: 6px;
+      transform: translateY(0px) rotate(36deg);
+      @include breakpoint(mobile) {
+        margin-top: 8px;
+      }
+  }
+  .arrow-line2{
+      transform: translateY(5px) rotate(-36deg);
+  }
+}
+@mixin arrowL($c){
+  .arrow-line3, .arrow-line4{
+      @extend %arrow;
+      background-color: map-get($colors, $c);
+      margin-top: 13px;
+      margin-left: -15px;
+      transform: translateY(0px) rotate(36deg);
+  }
+  .arrow-line4{
+      transform: translateY(-5px) rotate(-36deg);
+  }
+}
+@mixin arrowT($c, $mt, $ml, $tsX){
+  .arrow-line5, .arrow-line6{
+    @extend %arrow;
+    background-color: color($c);
+    margin-top: $mt;
+    margin-left: $ml;
+    transform: translateX(0px) rotate(126deg);
+  }
+  .arrow-line6{
+    transform: translateX($tsX) rotate(-126deg);
+  }
+}
+
+//triangle
+%triangle{
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+@mixin triR($bw1, $c){
+  @extend %triangle;
+  border-width: $bw1 0 $bw1 $bw1*1.5;
+  border-color: transparent transparent transparent $c;
+}
+@mixin triL($bw1, $c){
+  @extend %triangle;
+  border-width: $bw1 $bw1*1.5 $bw1 0;
+  border-color: transparent $c transparent transparent;
+}
+@mixin triT($bw1, $c){
+  @extend %triangle;
+  border-width: 0 $bw1 $bw1*1.5 $bw1;
+  border-color: transparent transparent $c transparent;
+}
+@mixin triB($bw1, $c){
+  @extend %triangle;
+  border-width: $bw1*1.5 $bw1 0 $bw1;
+  border-color: $c transparent transparent transparent;
+}
+
+//flex
+@mixin flex{
+	display:flex;
+	display:-webkit-flex;
+	display:-moz-flex;
+	justify-content:space-between;
+	-webkit-justify-content:space-between;
+	align-items:center;
+	-webkit-align-items:center;
+}
+
+@mixin scrollbar($color, $bgc, $w, $bgw:$w){
+   &::-webkit-scrollbar { 
+      background-color: $color;
+      width:$w;
+  }
+  &::-webkit-scrollbar-thumb{
+      background-color:  $bgc;
+      border-radius: $w;
+  }
+}
+
+//ios iframe scroll
+@mixin iosiframe{
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+
+//youtube
+@mixin Y2B{
+  .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      box-sizing:border-box;
+  }
+  .video-container iframe,
+  .video-container object,
+  .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+}
+
+//by kua
+$mdw:768px;
+$sdw:480px;
+$smw:375px;
+@mixin browser-yt($name) {
+  @media (max-width:#{$name}) {
+    iframe[src*="youtube"] {
+      @if $name == $mdw {
+        max-width: 560px;
+        height: 390px;
+      }
+      @else if $name == $sdw{
+        max-width: 480px;
+        height: 240px;
+      }
+      @else if $name == $smw{
+        max-width: 360px;
+        height: 190px;
+      }
+    }
+  }
+}
+
+//Rwd
+@mixin breakpoint($point){
+     @if $point == hover{
+        @media only screen and (min-width: 1281px) { 
+          @content ;
+        }
+    }
+    @if $point == max{
+        @media only screen and (min-width: 1921px) { 
+          @content ;
+        }
+    }
+    @if $point == stacie{
+        @media screen and (min-resolution: 120dpi) and (min-width: 1280px) { 
+          @content ;
+        }
+    }
+    @if $point == hd{
+        @media only screen and (max-width: 1280px) { 
+          @content ;
+        }
+    }
+    @else if $point == desktop{
+        @media only screen and (max-width: 1024px) { 
+          @content ;
+        }
+    }
+    @else if $point == tablet{
+        @media only screen and (max-width: 768px) { 
+          @content ;
+        }
+    }
+    @else if $point == mia{
+        @media only screen and (max-width: 764px) { 
+          @content ;
+        }
+    }
+    @else if $point == tablet_s{
+        @media only screen and (max-width: 480px) { 
+          @content ;
+        }
+    }
+    @else if $point == mobile_l{
+        @media only screen and (max-width: 414px) { 
+          @content ;
+        }
+    }
+    @else if $point == mobile{
+        @media only screen and (max-width: 375px) { 
+          @content ;
+        }
+    }
+    @else if $point == mobile_s{
+        @media only screen and (max-width: 320px) { 
+          @content ;
+        }
+    }
+}
+
+// hack
+@mixin hack($ver) {
+    // * IE6-7 hack
+    @if $ver == "ie6-7" {
+        @media screen\9 {
+            @content;
+        }
+    }
+    // * IE8 hack only
+    @else if $ver == "ie8" {
+        @media \0screen {
+            @content;
+        }
+    }
+    // * IE6-8 hack
+    @else if $ver == "ie6-8" {
+        @media \0screen\,screen\9 {
+            @content;
+        }
+    }
+    // * IE9-11 hack(add propary \9)
+    @else if $ver == "ie9up" {
+        @media all and (min-width:0\0) {
+            @content;
+        }
+    }
+    // * IE10 up hack
+    @else if $ver == "ie10up" {
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
+            @content;
+        }
+    }
+    // * IE11 hack(add selector *:-ms-backdrop)
+    @else if $ver == "ie11" {
+        @media all and (-ms-high-contrast:none) {
+          #{'_:-ms-fullscreen, :root '},
+          &{
+           @content;
+          }
+        }
+    }
+    @else if $ver == "edge" {
+       _:-ms-lang(x),
+       &{
+         @content;
+       }
+    }
+    //Chrome hack 
+    @else if $ver == "chrome" {
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @content;
+      }
+    }
+    //Firefox hack only
+    @else if $ver == "ff" {
+      @-moz-document url-prefix(){
+        @content;
+      }
+    }
+    //Safari hack 
+    @else if $ver == "safari" {
+      @supports (overflow:-webkit-marquee) and (justify-content:inherit){
+        & {
+          @content;
+        }
+      }
+    }
+    //iOS hack
+    @else if $ver == "ios" {
+      @supports (-webkit-text-size-adjust:none) and (not (-ms-accelerator:true)) and (not (-moz-appearance:none)){
+        & { @content; }
+      }
+    }
+}
+
+
+
+
+
+
+//px -> rem
+//輸入寬可得到寬的rem
+@function remWidth($width) {
+    $psdWidth: 960; // 10rem
+    $newWidth: $width / $psdWidth; //960下該有的新高度
+    @return $newWidth / 1px * 10rem;
+}
+
+@function rem($px) {
+  $browser-default-font-size:10;
+    @return $px / $browser-default-font-size* 1rem;
+    // @return $px / 5;
+}
+// html{
+//   font-size: 62.5%;/*10 ÷ 16 × 100% = 62.5%*/
+  
+// }

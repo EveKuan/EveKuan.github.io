@@ -1,0 +1,16 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css); //思源黑體
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+$fontjh: 'Microsoft JhengHei',\5FAE\8EDF\6B63\9ED1\9AD4,PMingLiU,\65B0\7D30\660E\9AD4, sans-serif;
+$fontyh: 'Microsoft YaHe',\5FAE\8F6F\96C5\9ED1, sans-serif;
+$fontTC:'Noto Sans TC', serif;
+$fontOs:'Open Sans', sans-serif;;
+$colors:(
+	mc:#a1dfe6,
+	dmc:#3abab3,
+	dg:#a3a3a3,
+	gray:#e9e9e9,
+	red:#F31436
+);
+@function cr($color-name) {
+  @return map-get($colors, $color-name);
+}
