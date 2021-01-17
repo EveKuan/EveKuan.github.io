@@ -285,7 +285,7 @@ body {
 
 @media only screen and (max-width: 768px) {
   .wrapper {
-    padding: 30px;
+    padding: 40px;
   }
 }
 
@@ -317,16 +317,14 @@ body {
 .main-hello {
   position: absolute;
   width: 100%;
-  height: 100%;
-  padding: 2vh 2vw;
+  padding: 20px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   z-index: 2;
 }
 
 .main-hello__en {
-  position: absolute;
-  top: 50%;
+  position: relative;
   width: 100%;
   font-size: 2.25vw;
   line-height: 1.67;
@@ -340,7 +338,7 @@ body {
 
 .main-hello__tw {
   width: 100%;
-  position: absolute;
+  position: relative;
   font-size: 12px;
   bottom: 0;
 }
@@ -354,45 +352,34 @@ body {
   z-index: 2;
 }
 
-@media only screen and (max-width: 1024px) {
-  .main-photo {
-    background-position: 0% top;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .main:after {
     width: 100%;
     height: 50%;
     bottom: 0;
   }
+  .main-hello {
+    top: 50vh;
+    padding: 0 20px;
+  }
   .main-hello__en {
     font-size: 4.8vw;
-    top: 43vh;
-  }
-  .main-hello__tw {
-    bottom: 3.5vh;
   }
   .main-photo {
-    background-position: 100% top;
     background-size: auto 50%;
     z-index: 1;
   }
 }
 
 @media only screen and (max-width: 414px) {
-  .main-hello__en {
-    top: 46vh;
+  .main-hello__en, .main-hello__tw {
+    margin: 0;
   }
   .main-hello__tw {
-    bottom: auto;
-    top: 65vh;
+    margin-top: 20px;
   }
-}
-
-@media only screen and (max-width: 320px) {
-  .main-hello__tw {
-    top: 68vh;
+  .main-photo {
+    background-position: right -10vw top 0;
   }
 }
 /*# sourceMappingURL=common.css.map */

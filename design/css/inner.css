@@ -634,6 +634,10 @@ body {
     width: 46%;
     margin: 0 2% 20px;
   }
+  .works-box-cont.graphic .item {
+    width: 46%;
+    margin: 0 2% 20px;
+  }
 }
 
 .detail {
