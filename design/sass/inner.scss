@@ -412,6 +412,13 @@ body{
 			width: 100%;
 			margin-bottom: 30px;
 		}
+		&--half{
+			img{
+				display: inline-block;
+				width: 48%;
+				margin-right: 1%;		
+			}
+		}
 	}
 	@include breakpoint(tablet) {
 		&-group{
@@ -425,6 +432,13 @@ body{
 		}
 		&-preview{
 			width: 100%;
+			&--half{
+				img{
+					display: block;
+					width: 100%;
+					margin-left: 0;	
+				}
+			}
 		}
 	}
 }

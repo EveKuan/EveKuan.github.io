@@ -634,10 +634,6 @@ body {
     width: 46%;
     margin: 0 2% 20px;
   }
-  .works-box-cont.graphic .item {
-    width: 46%;
-    margin: 0 2% 20px;
-  }
 }
 
 .detail {
@@ -730,6 +726,12 @@ body {
   margin-bottom: 30px;
 }
 
+.detail-preview--half img {
+  display: inline-block;
+  width: 48%;
+  margin-right: 1%;
+}
+
 @media only screen and (max-width: 768px) {
   .detail-group {
     display: block;
@@ -742,6 +744,11 @@ body {
   }
   .detail-preview {
     width: 100%;
+  }
+  .detail-preview--half img {
+    display: block;
+    width: 100%;
+    margin-left: 0;
   }
 }
 /*# sourceMappingURL=inner.css.map */
